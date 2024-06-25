@@ -146,5 +146,74 @@ export const categoryController = {
       return res.status(400).json({ message: error.message });
     }
   },
-  
+  /* xóa mềm */
+  fakeDelete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      /* find category */
+      const category = await Category.findById(id);
+      if (!category) {
+        return res.status(400).json({ message: 'Danh mục không tồn tại' });
+      }
+      /* thay đổi trạng thái của product false -> true */
+      const products = category.products;
+      if (products.length > 0) {
+        const updateProducts = await Product.updateMany(
+          { _id: { $in: products } },
+          { is_deleted: true },
+          { new: true }
+        );
+        if (!updateProducts) {
+          return res.status(400).json({ message: 'Xóa sản phẩm thất bại' });
+        }
+      }
+      /* update category */
+      const updateCategory = await Category.findByIdAndUpdate(
+        id,
+        { is_deleted: true },
+        { new: true }
+      );
+      if (!updateCategory) {
+        return res.status(400).json({ message: 'Xóa danh mục thất bại' });
+      }
+      return res.status(201).json({ data: updateCategory });
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  },
+  /* khôi phục lại */
+  restore: async (req, res) => {
+    try {
+      const { id } = req.params;
+      /* find category */
+      const category = await Category.findById(id);
+      if (!category) {
+        return res.status(400).json({ message: 'Danh mục không tồn tại' });
+      }
+      /* thay đổi trạng thái của product true -> false */
+      const products = category.products;
+      if (products.length > 0) {
+        const updateProducts = await Product.updateMany(
+          { _id: { $in: products } },
+          { is_deleted: false },
+          { new: true }
+        );
+        if (!updateProducts) {
+          return res.status(400).json({ message: 'Xóa sản phẩm thất bại' });
+        }
+      }
+      /* update category */
+      const updateCategory = await Category.findByIdAndUpdate(
+        id,
+        { is_deleted: false },
+        { new: true }
+      );
+      if (!updateCategory) {
+        return res.status(400).json({ message: 'Xóa danh mục thất bại' });
+      }
+      return res.status(201).json({ data: updateCategory });
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  },
 };
