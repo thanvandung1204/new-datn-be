@@ -94,6 +94,7 @@ export const userController = {
             _id: user._id,
             username: user.username,
             account: user.account,
+            address: user.address,
           },
         });
       } else {
@@ -108,7 +109,6 @@ export const userController = {
     }
   },
   // login
-            address: user.address,
   login: async (req, res) => {
     try {
       const { account, password } = req.body;
