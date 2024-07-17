@@ -11,9 +11,25 @@ import orderRoutes from './order.routes.js';
 
 import express from 'express';
 import uploadBanner from './banner.routes.js';
+import voucherRoutes from './voucher.routes.js';
+
 const router = express.Router();
 
-const rootRoutes = [UserRoutes, AuthRouter, uploadRouter, sizeRoutes, toppingRoutes,productRoutes,categoryRoutes,orderRoutes,cartRouter,uploadBanner];
+
+
+const rootRoutes = [
+  UserRoutes,
+  AuthRouter,
+  uploadRouter,
+  sizeRoutes,
+  toppingRoutes,
+  productRoutes,
+  categoryRoutes,
+  orderRoutes,
+  cartRouter,
+  uploadBanner,
+  voucherRoutes,
+];
 
 rootRoutes.map((route) => {
   router.use(route);
