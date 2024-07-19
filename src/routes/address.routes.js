@@ -1,4 +1,4 @@
-import { addressController } from '../controllers/address.controller.js';
+import { addressController } from '../controllers/adress.controller.js';
 import express from 'express';
 const router = express.Router();
 router.post('/address/create', addressController.createAddress);
