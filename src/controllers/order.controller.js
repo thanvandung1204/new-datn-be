@@ -95,7 +95,7 @@ export const orderController = {
         subject: 'cảm ơn bạn đã đặt hàng tại Trà sữa Connect',
       };
       
-      // await sendEmailOrder(dataEmail);
+      await sendEmailOrder(dataEmail);
       const cart = await Cart.deleteMany({
         user: order.user,
       });
