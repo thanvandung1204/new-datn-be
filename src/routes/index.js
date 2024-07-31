@@ -15,7 +15,7 @@ import categoryBlogRoutes from './category-blog.routes.js';
 import analyticRoutes from './analytic.routes.js';
 import vnpayRoutes from './vnpay.rotues.js';
 import addressRouter from './address.routes.js';
-import notificationRoutes from './notification.routes.js';
+import notificationRoutes from './notification.router.js';
 import stripeRoutes from './stripe.routes.js';
 
 const router = express.Router();
