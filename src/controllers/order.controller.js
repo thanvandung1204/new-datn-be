@@ -27,6 +27,7 @@ export const orderController = {
       const checkSpamPhone = await axios.get(
         'http://localhost:8000/api/cancelOrder?phoneCheck=' + body.inforOrderShipping.phone
       );
+      console.log(checkSpamPhone,'checkSpamPhone day')
       if (checkSpamPhone.data.status == true) {
         const encodeStripe = generatePaymentToken(note);
         /* validate */
