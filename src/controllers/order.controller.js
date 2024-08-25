@@ -99,7 +99,7 @@ export const orderController = {
           total: totalAll,
           to: body.inforOrderShipping.email,
           text: 'Hi!',
-          subject: 'cảm ơn bạn đã đặt hàng tại Trà sữa Connect',
+          subject: 'cảm ơn bạn đã đặt hàng tại Trà sữa King Tea',
         };
 
         // await sendEmailOrder(dataEmail);
@@ -211,7 +211,7 @@ export const orderController = {
     const dataEmail = {
       to: updateState.inforOrderShipping.email,
       text: 'Hi!',
-      subject: 'cảm ơn bạn đã đặt hàng tại Trà sữa Connect',
+      subject: 'cảm ơn bạn đã đặt hàng tại Trà sữa King Tea',
       html: `
           <style>
            
@@ -350,7 +350,7 @@ export const orderController = {
         total: orderCanceled.total,
         to: orderCanceled.inforOrderShipping.email,
         text: 'Hi!',
-        subject: 'cảm ơn bạn đã đặt hàng tại Trà sữa Connect',
+        subject: 'cảm ơn bạn đã đặt hàng tại Trà sữa King Tea',
       };
 
       // await sendEmailOrder(dataEmail1);

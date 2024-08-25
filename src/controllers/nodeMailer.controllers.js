@@ -44,7 +44,7 @@ export const sendEmailOrder = async (data) => {
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4">
               <div class="receipt-left">
-                <h3>HÓA ĐƠN ĐẶT HÀNG TRÀ SỮA CONNECT</h3>
+                <h3>HÓA ĐƠN ĐẶT HÀNG TRÀ SỮA King Tea</h3>
               </div>
             </div>
           </div>
