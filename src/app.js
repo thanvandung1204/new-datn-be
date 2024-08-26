@@ -161,7 +161,7 @@ app.get("/api/cancelOrder/", async (req, res) => {
     }
     if (phoneCheck) {
       console.log(phoneCheck, "phoneCheck");
-      const chc = 5;
+      const chc = 4;
       if (newJson[phoneCheck]?.count <= chc || !newJson[phoneCheck]) {
         return res.json({
           phoneCheck,
