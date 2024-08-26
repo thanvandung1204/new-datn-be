@@ -726,7 +726,7 @@ export const analyticController = {
     for (const v of result) {
       if (v.status != 'canceled') doanh_thu += v.total; //doanh thu
       for (const c of v.items) {
-       
+
         if (!sold_product[c.name]) {
           sold_product[c.name] = { count: 1, _id: c._id, images: [c.image], price: c.price };
         } else {
@@ -775,7 +775,7 @@ export const analyticController = {
       for (const value of res1) {
         dt_toDate += value.total; //dt
         if (value.status == 'canceled') cancel_order_toDate += 1;
-        if (value.status == 'dont') done_order_toDate += 1;
+        if (value.status == 'done') done_order_toDate += 1;
         if (value.paymentMethodId == 'vnpay') vnpay_toDate += 1;
       }
       AnaZone = {
