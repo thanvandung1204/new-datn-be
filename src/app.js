@@ -234,19 +234,19 @@ app.get("/conversations", async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 });
-app.get("/conversations-details/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const messages = await Message.find({ conversationId: id }).populate(
-      "senderId receiverId"
-    );
-    console.log(messages, "messages");
-    return res.json(messages);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.get("/conversations-details/:id", async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const messages = await Message.find({ conversationId: id }).populate(
+//       "senderId receiverId"
+//     );
+//     console.log(messages, "messages");
+//     return res.json(messages);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 app.post("/messages-cra", async (req, res) => {
   try {
     console.log(req.body);
