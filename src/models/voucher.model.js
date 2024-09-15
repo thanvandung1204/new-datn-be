@@ -22,7 +22,6 @@ const voucherSchema = new mongoose.Schema(
         type: String,
       },
     ],
-    maxUse: { type: Number, required: true, default: 0 },
   },
   { timestamps: true, versionKey: false }
 );
