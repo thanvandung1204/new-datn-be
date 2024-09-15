@@ -54,17 +54,20 @@ export const orderController = {
         const userUsedVoucher = body.inforOrderShipping.phone;
         // check voucher đã đc dùng hay chưa
         if (body?.moneyPromotion?.voucherId) {
-          const checkVoucher = await Voucher.findById({ _id: body.moneyPromotion.voucherId });
+          const voucherId = body.moneyPromotion.voucherId;
+          const userUsedVoucher = body.inforOrderShipping.phone; // Đây có thể là id_user hoặc thông tin khác để xác định người dùng
+
+          const checkVoucher = await Voucher.findById(voucherId);
 
           if (!checkVoucher) {
             return res.status(400).json({ error: 'Không tìm thấy mã voucher' });
           }
 
-          if (checkVoucher.discount == 0) {
+          if (checkVoucher.discount === 0) {
             return res.status(400).json({ error: 'Voucher đã hết lượt dùng!' });
           }
-          const exitUser = checkVoucher.user_used.includes(userUsedVoucher);
-          if (exitUser) {
+
+          if (checkVoucher.user_used.includes(userUsedVoucher)) {
             return res.status(400).json({ error: 'Đã hết lượt dùng Voucher' });
           }
 
