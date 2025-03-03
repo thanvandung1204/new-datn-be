@@ -150,6 +150,9 @@ export const ProductController = {
   getAllProducts: async (req, res, next) => {
     try {
       const { _page = 1, _limit = 10, q = '', c = '' } = req.query;
+      const dataSize = await Size.find({});
+      const dataTopping = await Topping.find({});
+
       let query = { $and: [{ is_deleted: false }, { is_active: true }] };
       const options = {
         page: _page,
@@ -198,6 +201,24 @@ export const ProductController = {
       const products = await Product.paginate(query, options);
       if (!products) {
         return res.status(404).json({ message: 'fail', err: 'Not found any size' });
+      }
+      for (const m of products.docs) {
+        if (m.sizes.length < 1 || m.toppings.length < 1) {
+          await Product.findByIdAndUpdate(
+            m._id,
+            {
+              $set: {
+                is_active: false,
+              },
+            },
+            { new: true }
+          );
+        }
+        const validSizes = await Size.find({ _id: { $in: m.sizes } });
+        const validToppings = await Topping.find({ _id: { $in: m.toppings } });
+        if (validSizes.length !== m.sizes.length || validToppings.length !== m.toppings.length) {
+          await Product.findByIdAndUpdate(m._id, { $set: { is_active: false } }, { new: true });
+        }
       }
       return res.status(200).json({ ...products });
     } catch (error) {
